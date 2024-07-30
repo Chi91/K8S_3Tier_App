@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 3-tier-frontend-deploy
+  labels:
+    app: 3-tier-frontend-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:  
+      app: frontend-deploy
+  template:
+    metadata:
+      labels:
+        app: frontend-deploy
+    spec:
+      containers:
+        - name: frontend 
+          image: chi91/3tier-frontend-kubernetes
+          ports:
+            - containerPort: 80
